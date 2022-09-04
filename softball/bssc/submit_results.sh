@@ -1,9 +1,9 @@
 #!/bin/bash
 
 main() {
-  if [[ "8" != "$?" ]];
+  if [[ "8" != "$#" ]];
   then
-    exit 255 && printf "Expected eight arguments: email address, name of captain, start date (MM-DD-YYYY), start time (H:MM), outcome, opposing team color, runs scored, opposing runs scored\n"
+    printf "Expected eight arguments: email address, name of captain, start date (MM-DD-YYYY), start time (H:MM), outcome, opposing team color, runs scored, opposing runs scored\n" && exit 255
   fi
 
   local -r email_address="$1"
@@ -40,13 +40,15 @@ main() {
     -H 'Sec-Fetch-User: ?1' \
     -H 'Pragma: no-cache' \
     -H 'Cache-Control: no-cache' \
-    --data-urlencode "Email=${email_address}"
-    --data-urlencode "CaptainName=${name_of_captain}"
-    --data-urlencode "CaptainName=${name_of_captain}"
-    --data-urlencoded "GameDate=${start_date}"
-    --data-urlencoded "What time was your game?=${start_time}"
-    --data-urlencoded "WinStatus=${outcome}"
-    --data-raw '_returnTo=%2Freport-scores&formID=3&Sport=Softball+Indoor&Title+of+League=Monday-Wednesday+Coed&Team+number%2Fcolor=Silver&Opponents+number%2Fcolor=Black&Score=11-20&Comments='
+    --data-urlencode "Email=${email_address}" \
+    --data-urlencode "CaptainName=${name_of_captain}" \
+    --data-urlencode "CaptainName=${name_of_captain}" \
+    --data-urlencode "GameDate=${start_date}" \
+    --data-urlencode "What time was your game?=${start_time}" \
+    --data-urlencode "WinStatus=${outcome}" \
+    --data-urlencode "Opponents+number/color=${opposing_team_color}" \
+    --data-urlencode "Score=${runs_scored}-${opposing_runs_scored}" \
+    --data-raw '_returnTo=%2Freport-scores&formID=3&Sport=Softball+Indoor&Title+of+League=Monday-Wednesday+Coed&Team+number%2Fcolor=Silver&Comments='
 }
 
 main "$@"
