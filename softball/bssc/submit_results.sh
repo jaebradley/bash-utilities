@@ -48,7 +48,7 @@ main() {
     --data-urlencode "WinStatus=${outcome}" \
     --data-urlencode "Opponents+number/color=${opposing_team_color}" \
     --data-urlencode "Score=${runs_scored}-${opposing_runs_scored}" \
-    --data-raw '_returnTo=%2Freport-scores&formID=3&Sport=Softball+Indoor&Title+of+League=Monday-Wednesday+Coed&Team+number%2Fcolor=Silver&Comments='
+    --data-raw '_returnTo=%2Freport-scores&formID=3&Sport=Softball+Outdoor&Title+of+League=Monday-Wednesday+Coed&Team+number%2Fcolor=Gold&Comments='
 }
 
 main "$@"
