@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function main() {
-  if [[ "2" != "$#" ]]; then printf "Expected two arguments, the instrument identifier (e.g. a stock ticker) and an API key\n" && exist 255; fi
+  if [[ "2" != "$#" ]]; then printf "Expected two arguments, the instrument identifier (e.g. a stock ticker) and an API key\n" && exit 255; fi
 
   $(command -v "curl" &> /dev/null)
   if [[ "0" != "$?"  ]]; then printf "Unable to identify curl program\n" && exit 255; fi
